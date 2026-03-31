@@ -320,35 +320,22 @@
         </div>
       </div>
     </div>
+
     <script src="script.js"></script>
-  <meta charset="UTF-8">
-  
 
-   <audio id="bgAudio" loop>
-    <source src="c:\Users\7artt\Downloads\big-jet-plane.mp3.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio HTML5.
-  </audio>
+    <audio id="bgAudio" loop>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-  <script>
-    const audio = document.getElementById('bgAudio');
-    const msg = document.getElementById('msg');
-
-    function iniciarAudio() {
-      audio.play().then(() => {
-        msg.textContent = " ";
-        document.body.style.cursor = "default";
-      }).catch(error => {
-        msg.textContent = "Erro ao reproduzir áudio.";
-        console.error("Erro no autoplay:", error);
-      });
-
-      // Remove o ouvinte após a primeira interação
-      document.removeEventListener('click', iniciarAudio);
-    }
-
-    // Espera o primeiro clique do usuário
-    document.addEventListener('click', iniciarAudio);
-  </script>
-
+    <script>
+      document.addEventListener('click', function () {
+        const audio = document.getElementById('bgAudio');
+        if (audio) {
+          audio.play().catch(function(error) {
+            console.log('Erro ao tocar áudio:', error);
+          });
+        }
+      }, { once: true });
+    </script>
 </body>
 </html>
